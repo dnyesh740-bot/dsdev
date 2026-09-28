@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dnyaneshwar Sonwane | .NET Full Stack Developer</title>
+
+    <meta name="description"
+          content="Dnyaneshwar Sonwane - .NET Full Stack Developer building modern websites, web applications, mobile applications, APIs and custom software solutions.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #06070b;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        :root {
+            --bg: #06070b;
+            --card: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.10);
+            --text: #ffffff;
+            --muted: #9da4b5;
+            --primary: #7c5cff;
+            --secondary: #00d4ff;
+            --success: #00e5a8;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+        /* =========================
+           CUSTOM CURSOR GLOW
+        ========================= */
+
+        .cursor-glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(
+                circle,
+                rgba(124,92,255,0.13),
+                transparent 65%
+            );
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: .35;
+            animation: floatOrb 12s ease-in-out infinite;
+        }
+
+        .orb.one {
+            width: 350px;
+            height: 350px;
+            background: #643cff;
+            top: 5%;
+            left: -100px;
+        }
+
+        .orb.two {
+            width: 300px;
+            height: 300px;
+            background: #00bfff;
+            right: -80px;
+            top: 35%;
+            animation-delay: -4s;
+        }
+
+        .orb.three {
+            width: 250px;
+            height: 250px;
+            background: #00d49c;
+            bottom: -50px;
+            left: 35%;
+            animation-delay: -8s;
+        }
+
+        @keyframes floatOrb {
+            0%,100% {
+                transform: translate(0,0) scale(1);
+            }
+
+            50% {
+                transform: translate(50px,-40px) scale(1.15);
+            }
+        }
+
+        /* =========================
+           PARTICLES
+        ========================= */
+
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255,255,255,.7);
+            border-radius: 50%;
+            animation: particleMove linear infinite;
+        }
+
+        @keyframes particleMove {
+            from {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: .3s;
+        }
+
+        header.scrolled {
+            background: rgba(6,7,11,.78);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c8cbd5;
+            font-size: 14px;
+            transition: .3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg,var(--primary),var(--secondary));
+            left: 0;
+            bottom: -7px;
+            transition: .3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 15px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.04);
+            border-radius: 50px;
+            color: #cfd3df;
+            font-size: 13px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--success);
+        }
+
+        .hero h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(48px, 7vw, 82px);
+            line-height: 1.02;
+            letter-spacing: -4px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #9f8cff,
+                #00d4ff
+            );
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-role {
+            margin-top: 20px;
+            color: var(--secondary);
+            font-size: clamp(18px, 3vw, 25px);
+            font-weight: 600;
+        }
+
+        .hero-description {
+            margin-top: 20px;
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                #9d76ff
+            );
+            box-shadow: 0 10px 35px rgba(124,92,255,.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.3);
+        }
+
+        .btn-outline {
+            background: rgba(255,255,255,.04);
+        }
+
+        /* =========================
+           CODE CARD
+        ========================= */
+
+        .hero-card {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .code-window {
+            border: 1px solid var(--border);
+            background: rgba(15,17,25,.75);
+            backdrop-filter: blur(25px);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.5),
+                0 0 80px rgba(124,92,255,.12);
+            transform: rotateY(-7deg) rotateX(4deg);
+            transition: .5s;
+        }
+
+        .hero-card:hover .code-window {
+            transform: rotateY(0) rotateX(0) translateY(-8px);
+        }
+
+        .window-top {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 7px;
+        }
+
+        .window-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #ffffff55;
+        }
+
+        .code {
+            padding: 30px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 2;
+            color: #bfc6d8;
+        }
+
+        .keyword {
+            color: #c792ea;
+        }
+
+        .class {
+            color: #82aaff;
+        }
+
+        .string {
+            color: #c3e88d;
+        }
+
+        .property {
+            color: #ffcb6b;
+        }
+
+        .comment {
+            color: #697386;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 110px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: var(--secondary);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .section-title h2 {
+            font-family: "Space Grotesk";
+            font-size: clamp(34px,5vw,50px);
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            max-width: 650px;
+            margin: 15px auto 0;
+            color: var(--muted);
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-card {
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 25px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+        }
+
+        .profile-box {
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-circle {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            font-weight: 800;
+            font-family: "Space Grotesk";
+            background:
+                linear-gradient(135deg,#7c5cff,#00d4ff);
+            box-shadow:
+                0 0 80px rgba(124,92,255,.35);
+            animation: profileFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes profileFloat {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .about-content h3 {
+            font-family: "Space Grotesk";
+            font-size: 32px;
+            margin-bottom: 18px;
+        }
+
+        .about-content p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: rgba(255,255,255,.035);
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            font-family: "Space Grotesk";
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            padding: 32px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            transition: .4s;
+            transform-style: preserve-3d;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) rotateX(2deg);
+            border-color: rgba(124,92,255,.5);
+            box-shadow: 0 25px 60px rgba(0,0,0,.3);
+        }
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background: linear-gradient(
+                135deg,
+                rgba(124,92,255,.25),
+                rgba(0,212,255,.15)
+            );
+            font-size: 25px;
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-family: "Space Grotesk";
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .skill-box {
+            padding: 28px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .skill-head {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .skill-head span:last-child {
+            color: var(--secondary);
+        }
+
+        .skill-bar {
+            height: 8px;
+            border-radius: 20px;
+            background: #1c202a;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            width: 0;
+            border-radius: inherit;
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary)
+            );
+            transition: width 1.5s cubic-bezier(.2,.7,.2,1);
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            transition: .4s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            background:
+                radial-gradient(circle at 20% 20%,#7c5cff55,transparent 40%),
+                radial-gradient(circle at 80% 80%,#00d4ff44,transparent 40%),
+                #10131c;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            font-family: "Space Grotesk";
+            margin-bottom: 8px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tag {
+            padding: 5px 9px;
+            border-radius: 7px;
+            background: rgba(255,255,255,.06);
+            color: #c8ccda;
+            font-size: 11px;
+        }
+
+        /* =========================
+           PROCESS
+        ========================= */
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+
+        .process-card {
+            text-align: center;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--card);
+        }
+
+        .process-number {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg,var(--primary),var(--secondary));
+            font-weight: 800;
+        }
+
+        .process-card p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+            text-align: center;
+            padding: 70px 30px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(124,92,255,.15),
+                    transparent 60%
+                ),
+                rgba(255,255,255,.03);
+        }
+
+        .contact-box h2 {
+            font-family: "Space Grotesk";
+            font-size: clamp(35px,5vw,60px);
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 15px auto 30px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social {
+            padding: 12px 18px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: rgba(255,255,255,.04);
+            transition: .3s;
+        }
+
+        .social:hover {
+            transform: translateY(-4px);
+            background: rgba(255,255,255,.08);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: #747b8b;
+            font-size: 13px;
+        }
+
+        /* =========================
+           REVEAL ANIMATION
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        #topBtn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: rgba(15,17,25,.8);
+            color: white;
+            cursor: pointer;
+            display: none;
+            z-index: 500;
+            backdrop-filter: blur(15px);
+        }
+
+        #topBtn.show {
+            display: block;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:900px) {
+
+            .hero-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                max-width: 650px;
+                margin: auto;
+            }
+
+            .service-grid,
+            .project-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:700px) {
+
+            .nav-links {
+                position: absolute;
+                top: 75px;
+                left: 4%;
+                width: 92%;
+                flex-direction: column;
+                padding: 25px;
+                background: rgba(10,12,18,.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .service-grid,
+            .project-grid,
+            .skills-grid,
+            .process {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .code {
+                font-size: 11px;
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <div class="background">
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+        <div class="orb three"></div>
+    </div>
+
+    <div id="particles"></div>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header id="header">
+
+        <div class="container nav">
+
+            <a href="#home" class="logo">
+                DS<span>.</span>
+            </a>
+
+            <button class="menu-btn" id="menuBtn">
+                ☰
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="container hero-grid">
+
+            <div class="hero-content reveal">
+
+                <div class="badge">
+                    <span class="status-dot"></span>
+                    Available for new projects
+                </div>
+
+                <h1>
+                    Hi, I'm
+                    <span class="gradient-text">
+                        Dnyaneshwar.
+                    </span>
+                </h1>
+
+                <div class="hero-role">
+                    <span id="typing"></span>
+                </div>
+
+                <p class="hero-description">
+                    I design and develop modern digital experiences,
+                    scalable web applications, mobile solutions,
+                    APIs and custom software that help businesses
+                    grow faster.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#projects" class="btn btn-primary">
+                        View My Work →
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Let's Talk
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card reveal">
+
+                <div class="code-window">
+
+                    <div class="window-top">
+                        <span class="window-dot"></span>
+                        <span class="window-dot"></span>
+                        <span class="window-dot"></span>
+                    </div>
+
+                    <div class="code">
+
+                        <div>
+                            <span class="keyword">public class</span>
+                            <span class="class">Developer</span>
+                        </div>
+
+                        <div>{</div>
+
+                        <div>
+                            &nbsp;&nbsp;
+                            <span class="property">Name</span> =
+                            <span class="string">
+                                "Dnyaneshwar Sonwane"
+                            </span>;
+                        </div>
+
+                        <div>
+                            &nbsp;&nbsp;
+                            <span class="property">Role</span> =
+                            <span class="string">
+                                ".NET Full Stack Developer"
+                            </span>;
+                        </div>
+
+                        <div>
+                            &nbsp;&nbsp;
+                            <span class="property">Passion</span> =
+                            <span class="string">
+                                "Building Digital Products"
+                            </span>;
+                        </div>
+
+                        <br>
+
+                        <div class="comment">
+                            // Turning ideas into software
+                        </div>
+
+                        <div>
+                            &nbsp;&nbsp;
+                            <span class="keyword">return</span>
+                            BuildSomethingAwesome();
+                        </div>
+
+                        <div>}</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>ABOUT ME</span>
+
+                <h2>Developer behind the code.</h2>
+
+                <p>
+                    I combine clean engineering with modern design
+                    to create software that is useful, fast and easy
+                    to use.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <div class="about-card profile-box reveal">
+
+                    <div class="profile-circle">
+                        DS
+                    </div>
+
+                </div>
+
+
+                <div class="about-content reveal">
+
+                    <h3>
+                        Building ideas into digital experiences.
+                    </h3>
+
+                    <p>
+                        I'm Dnyaneshwar Sonwane, a .NET Full Stack
+                        Developer focused on building reliable,
+                        scalable and user-friendly software.
+                    </p>
+
+                    <p>
+                        From responsive websites and business
+                        applications to mobile apps, APIs and
+                        custom software, I enjoy solving real-world
+                        problems through technology.
+                    </p>
+
+                    <div class="stats">
+
+                        <div class="stat">
+                            <strong>∞</strong>
+                            <span>Ideas</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>24/7</strong>
+                            <span>Learning</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>100%</strong>
+                            <span>Passion</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>DS</strong>
+                            <span>Developer</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SERVICES ================= -->
+
+    <section id="services">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>WHAT I BUILD</span>
+
+                <h2>Digital solutions for modern businesses.</h2>
+
+            </div>
+
+
+            <div class="service-grid">
+
+                <div class="service-card reveal">
+                    <div class="service-icon">🌐</div>
+                    <h3>Websites</h3>
+                    <p>
+                        Modern, responsive and conversion-focused
+                        websites designed for every screen.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">💻</div>
+                    <h3>Web Applications</h3>
+                    <p>
+                        Scalable business applications with clean
+                        architecture and intuitive interfaces.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Applications</h3>
+                    <p>
+                        Mobile solutions that deliver smooth and
+                        consistent user experiences.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">⚡</div>
+                    <h3>API Development</h3>
+                    <p>
+                        Secure and scalable APIs for connecting
+                        applications and services.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Custom Software</h3>
+                    <p>
+                        Software tailored around specific business
+                        requirements and workflows.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">🚀</div>
+                    <h3>Digital Solutions</h3>
+                    <p>
+                        End-to-end software solutions from idea,
+                        development and deployment.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SKILLS ================= -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>TECHNOLOGY</span>
+
+                <h2>Tools I work with.</h2>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+                <div class="skill-box reveal">
+
+                    <div class="skill-head">
+                        <span>C# / .NET</span>
+                        <span>95%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="95%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-box reveal">
+
+                    <div class="skill-head">
+                        <span>ASP.NET</span>
+                        <span>92%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="92%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-box reveal">
+
+                    <div class="skill-head">
+                        <span>SQL Server</span>
+                        <span>90%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-box reveal">
+
+                    <div class="skill-head">
+                        <span>HTML / CSS</span>
+                        <span>94%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="94%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-box reveal">
+
+                    <div class="skill-head">
+                        <span>JavaScript</span>
+                        <span>85%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-box reveal">
+
+                    <div class="skill-head">
+                        <span>REST APIs</span>
+                        <span>90%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90%"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECTS ================= -->
+
+    <section id="projects">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>SELECTED WORK</span>
+
+                <h2>Things I've built.</h2>
+
+                <p>
+                    A few examples of the type of digital products
+                    I can design and develop.
+                </p>
+
+            </div>
+
+
+            <div class="project-grid">
+
+                <div class="project-card reveal">
+
+                    <div class="project-image">
+                        💼
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Business Web Application</h3>
+
+                        <p>
+                            A complete business application with
+                            authentication, dashboards, reports
+                            and database integration.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">ASP.NET</span>
+                            <span class="tag">C#</span>
+                            <span class="tag">SQL</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-card reveal">
+
+                    <div class="project-image">
+                        📱
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Mobile Application</h3>
+
+                        <p>
+                            A modern mobile experience designed for
+                            easy navigation and smooth interaction.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Mobile</span>
+                            <span class="tag">API</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-card reveal">
+
+                    <div class="project-image">
+                        🚀
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>Custom Software</h3>
+
+                        <p>
+                            Custom software designed around real
+                            business processes and requirements.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">.NET</span>
+                            <span class="tag">SQL Server</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROCESS ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>MY PROCESS</span>
+
+                <h2>From idea to product.</h2>
+
+            </div>
+
+
+            <div class="process">
+
+                <div class="process-card reveal">
+
+                    <div class="process-number">01</div>
+
+                    <h3>Discover</h3>
+
+                    <p>
+                        Understand the idea, requirements and
+                        business goals.
+                    </p>
+
+                </div>
+
+
+                <div class="process-card reveal">
+
+                    <div class="process-number">02</div>
+
+                    <h3>Design</h3>
+
+                    <p>
+                        Create clean interfaces and intuitive
+                        user experiences.
+                    </p>
+
+                </div>
+
+
+                <div class="process-card reveal">
+
+                    <div class="process-number">03</div>
+
+                    <h3>Develop</h3>
+
+                    <p>
+                        Build scalable and maintainable software
+                        using modern technologies.
+                    </p>
+
+                </div>
+
+
+                <div class="process-card reveal">
+
+                    <div class="process-number">04</div>
+
+                    <h3>Launch</h3>
+
+                    <p>
+                        Test, deploy and continuously improve
+                        the product.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+        <div class="container">
+
+            <div class="contact-box reveal">
+
+                <h2>
+                    Have an idea?
+                    <span class="gradient-text">
+                        Let's build it.
+                    </span>
+                </h2>
+
+                <p>
+                    Have a website, application or software idea?
+                    Let's turn it into something useful, modern
+                    and powerful.
+                </p>
+
+                <div class="hero-buttons"
+                     style="justify-content:center">
+
+                  
+
+                    <a href="https://wa.me/919999999999"
+                       target="_blank"
+                       class="btn btn-outline">
+                        WhatsApp - 9850142119
+                    </a>
+
+                </div>
+
+
+                <div class="socials">
+
+                   
+
+                    <a class="social"
+                       href="https://www.linkedin.com/"
+                       target="_blank">
+                        LinkedIn - Dnyaneshwar Sonawane
+                    </a>
+
+                    <a class="social"
+                       href="mailto:your-email@example.com">
+                        Email - dnyaneshsonawane3@gmail.com
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            © <span id="year"></span>
+            Dnyaneshwar Sonwane.
+            Crafted with code & creativity.
+
+        </div>
+
+    </footer>
+
+
+    <button id="topBtn">↑</button>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* =========================
+           TYPING EFFECT
+        ========================= */
+
+        const roles = [
+            ".NET Full Stack Developer",
+            "Web Application Developer",
+            "Software Developer",
+            "API Developer",
+            "Digital Solution Builder"
+        ];
+
+        const typing = document.getElementById("typing");
+
+        let roleIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeEffect() {
+
+            const currentRole = roles[roleIndex];
+
+            if (!deleting) {
+
+                typing.textContent =
+                    currentRole.substring(0, charIndex + 1);
+
+                charIndex++;
+
+                if (charIndex === currentRole.length) {
+
+                    deleting = true;
+
+                    setTimeout(typeEffect, 1500);
+
+                    return;
+                }
+
+            } else {
+
+                typing.textContent =
+                    currentRole.substring(0, charIndex - 1);
+
+                charIndex--;
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+
+                    roleIndex =
+                        (roleIndex + 1) % roles.length;
+
+                }
+
+            }
+
+            setTimeout(
+                typeEffect,
+                deleting ? 45 : 80
+            );
+        }
+
+        typeEffect();
+
+
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", () => {
+
+            navLinks.classList.toggle("active");
+
+        });
+
+
+        document.querySelectorAll(".nav-links a")
+            .forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    navLinks.classList.remove("active");
+
+                });
+
+            });
+
+
+        /* =========================
+           HEADER SCROLL
+        ========================= */
+
+        const header =
+            document.getElementById("header");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 50) {
+
+                header.classList.add("scrolled");
+
+            } else {
+
+                header.classList.remove("scrolled");
+
+            }
+
+        });
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================= */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("active");
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        revealElements.forEach(element => {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* =========================
+           SKILL ANIMATION
+        ========================= */
+
+        const skillBars =
+            document.querySelectorAll(".skill-progress");
+
+        const skillObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            const width =
+                                entry.target.dataset.width;
+
+                            entry.target.style.width = width;
+
+                            skillObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .5
+                }
+            );
+
+
+        skillBars.forEach(bar => {
+
+            skillObserver.observe(bar);
+
+        });
+
+
+        /* =========================
+           PARTICLES
+        ========================= */
+
+        const particleContainer =
+            document.getElementById("particles");
+
+        for (let i = 0; i < 55; i++) {
+
+            const particle =
+                document.createElement("span");
+
+            particle.classList.add("particle");
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.animationDuration =
+                (6 + Math.random() * 12) + "s";
+
+            particle.style.animationDelay =
+                Math.random() * 10 + "s";
+
+            particle.style.opacity =
+                Math.random();
+
+            particleContainer.appendChild(
+                particle
+            );
+
+        }
+
+
+        /* =========================
+           MOUSE GLOW
+        ========================= */
+
+        const cursorGlow =
+            document.getElementById("cursorGlow");
+
+        document.addEventListener("mousemove", e => {
+
+            cursorGlow.style.left =
+                e.clientX + "px";
+
+            cursorGlow.style.top =
+                e.clientY + "px";
+
+        });
+
+
+        /* =========================
+           PROJECT CARD 3D EFFECT
+        ========================= */
+
+        document
+            .querySelectorAll(".project-card")
+            .forEach(card => {
+
+                card.addEventListener(
+                    "mousemove",
+                    e => {
+
+                        const rect =
+                            card.getBoundingClientRect();
+
+                        const x =
+                            e.clientX - rect.left;
+
+                        const y =
+                            e.clientY - rect.top;
+
+                        const centerX =
+                            rect.width / 2;
+
+                        const centerY =
+                            rect.height / 2;
+
+                        const rotateX =
+                            (y - centerY) / 20;
+
+                        const rotateY =
+                            (centerX - x) / 20;
+
+                        card.style.transform =
+                            `perspective(800px)
+                             rotateX(${rotateX}deg)
+                             rotateY(${rotateY}deg)
+                             translateY(-8px)`;
+
+                    }
+                );
+
+
+                card.addEventListener(
+                    "mouseleave",
+                    () => {
+
+                        card.style.transform = "";
+
+                    }
+                );
+
+            });
+
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        const topBtn =
+            document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 500) {
+
+                topBtn.classList.add("show");
+
+            } else {
+
+                topBtn.classList.remove("show");
+
+            }
+
+        });
+
+
+        topBtn.addEventListener("click", () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+
+        /* =========================
+           YEAR
+        ========================= */
+
+        document.getElementById("year")
+            .textContent =
+            new Date().getFullYear();
+
+
+        /* =========================
+           DISABLE 3D EFFECT ON TOUCH
+        ========================= */
+
+        if (
+            "ontouchstart" in window ||
+            navigator.maxTouchPoints > 0
+        ) {
+
+            document
+                .querySelectorAll(".project-card")
+                .forEach(card => {
+
+                    card.style.transform = "";
+
+                });
+
+        }
+
+    </script>
+
+</body>
+</html>
